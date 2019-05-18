@@ -1,0 +1,29 @@
+{
+    "name": "flatorb/translator",
+    "description": "",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Flatorb",
+            "email": "contact@flatorb.com"
+        }
+    ],
+    "autoload": {
+            "psr-4": {
+                "Flatorb\\Translator\\": "src/"
+            }
+        },
+    "require": {},
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Flatorb\\Translator\\TranslatorServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    }
+}

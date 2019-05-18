@@ -1,1 +1,1 @@
-# translator
+# Laravel Translator
