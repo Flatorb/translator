@@ -1,6 +1,6 @@
 {
     "name": "flatorb/translator",
-    "description": ":description",
+    "description": "Laravel Translation package using manual and Google Cloud Translating API",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -10,7 +10,7 @@
         }
     ],
     "homepage": "https://github.com/flatorb/translator",
-    "keywords": ["Laravel", "Translator"],
+    "keywords": ["Laravel", "Translator", "Google Translate"],
     "require": {
         "illuminate/support": "~5"
     },
