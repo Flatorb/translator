@@ -1,7 +1,7 @@
 {
     "name": "flatorb/translator",
     "description": ":description",
-    "license": "GPL v3",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Flatorb",
