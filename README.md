@@ -47,7 +47,7 @@ If you discover any security related issues, please email contact@flatorb.com in
 
 ## License
 
-GPL v3. Please see the [license file](license.md) for more information.
+GPL v3. Please see the [license file](LICENSE) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/flatorb/translator.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/flatorb/translator.svg?style=flat-square

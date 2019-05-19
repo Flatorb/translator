@@ -8,4 +8,5 @@ if (config('translator.route_prefix')) {
 
 Route::group(['as' => 'translator.', 'prefix' => $prefix], function() {
 	Route::get('/', 'Flatorb\Translator\Http\Controllers\TranslatorController@index')->name('index');
+	Route::get('import', 'Flatorb\Translator\Http\Controllers\ImportController@index')->name('import');
 });

@@ -18,7 +18,8 @@ class CreateTranslations extends Migration
 		    $table->bigInteger('parent')->default(0);
 		    $table->string('locale', 4);
 		    $table->text('key')->nullable();
-		    $table->text('key_google')->nullable();
+		    $table->text('value')->nullable();
+		    $table->text('google')->nullable();
 		    $table->timestamps();
 		    $table->timestamp('deleted_at')->nullable();
 	    });

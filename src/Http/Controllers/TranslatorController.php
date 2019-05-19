@@ -5,6 +5,8 @@ namespace Flatorb\Translator\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Flatorb\Translator\Models\Translation;
+
 class TranslatorController extends Controller
 {
     /**
@@ -14,7 +16,9 @@ class TranslatorController extends Controller
      */
     public function index()
     {
-        return view('Translator::app');
+    	$keys = Translation::with(['translations'])->where('parent', 0)->get();
+    	
+        return view('Translator::index', compact('keys'));
     }
 
     /**
