@@ -12,7 +12,8 @@
     "homepage": "https://github.com/flatorb/translator",
     "keywords": ["Laravel", "Translator", "Google Translate"],
     "require": {
-        "illuminate/support": "~5"
+        "illuminate/support": "~5",
+        "google/cloud": "^0.101.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",
@@ -39,5 +40,6 @@
                 "Translator": "Flatorb\\Translator\\Facades\\Translator"
             }
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
