@@ -25,8 +25,8 @@
 					<td>{{ $key->key }}</td>
 					<td>{{ $key->value }}</td>
 					@foreach(explode(",", config('translator.locale_list')) as $locale)
-						<td>{{ $key->where('locale')->first()->value ?? NULL }}</td>
-						<td>{{ $key->where('locale')->first()->google ?? NULL }}</td>
+						<td>{{ $key->translations->where('locale', $locale)->first()->value ?? NULL }}</td>
+						<td>{{ $key->translations->where('locale', $locale)->first()->google ?? NULL }}</td>
 					@endforeach
 				</tr>
 			@endforeach

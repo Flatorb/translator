@@ -4,6 +4,7 @@ namespace Flatorb\Translator\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Google\Cloud\Translate\TranslateClient;
 
 use Flatorb\Translator\Models\Translation;
 
@@ -21,69 +22,50 @@ class TranslatorController extends Controller
         return view('Translator::index', compact('keys'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function translateAllGoogle() {
+	    $gTranslateClient = $this->gTranslateClient();
+	    
+	    $keys = Translation::with(['translations'])->where('parent', 0)->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+	    foreach ($keys as $key) {
+		    foreach(explode(",", config('translator.locale_list')) as $locale) {
+		    	if ($key->translations->where('locale', $locale)->first()) {
+				    if (empty($key->translations->where('locale', $locale)->first()->google)) {
+					    $item = $key->translations->where('locale', $locale)->first();
+						$item->google = $this->gTranslate($key->key, $locale, $gTranslateClient);
+				    }
+			    } else {
+				    Translation::create([
+				    	'parent' => $key->id,
+					    'locale' => $locale,
+					    'google' => $this->gTranslate($key->key, $locale, $gTranslateClient)
+				    ]);
+			    }
+		    }
+	    }
+	    
+	    return redirect(route('translator.index'));
+	    
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    
+    
+    public function gTranslate($key, $locale, $client = NULL) {
+    	if ($client == NULL) {
+    		$gTranslateClient = $this->gTranslateClient();
+	    } else {
+		    $gTranslateClient = $client;
+	    }
+    	
+    	$response = $gTranslateClient->translate($key, ['target' => $locale]);
+    	
+    	return $response['text'];
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    
+    public function gTranslateClient() {
+	    $translate = new TranslateClient([
+		    'key' => config('translator.google_api_key')
+	    ]);
+	    
+	    return $translate;
     }
 }

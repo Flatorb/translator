@@ -36,6 +36,16 @@
 						<a class="nav-link" href="{{ route('translator.index') }}">Settings</a>
 					</li>
 				</ul>
+				
+				<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+					<span>Translate with</span>
+				</h6>
+				
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('translator.translate.all.google') }}">Google (all)</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 		
